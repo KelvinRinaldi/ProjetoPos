@@ -1,14 +1,14 @@
-### Gráficos do Projeto Aplicado ###
+### GrÃ¡ficos do Projeto Aplicado ###
 
 # Bibliotecas
 library(tidyverse)
 library(RColorBrewer)
 
-# Identifica o dia da semana com maior número de ocorrências
+# Identifica o dia da semana com maior nÃºmero de ocorrÃªncias
 volumePorDia <- table(dados_acidentes_rs$dia_semana)
 volumePorDia
 
-# Cria lista de cores do cinza até o azul
+# Cria lista de cores do cinza atÃ© o azul
 listaDeCores1 <- colorRampPalette(c("#CCCCCC", "#104E8B"))
 
 # Identifica quantas cores iremos precisar 
@@ -17,7 +17,7 @@ listaDeCores1 <- listaDeCores1(n = nrow(x = volumePorDia))
 # Apresenta as cores
 listaDeCores1
 
-# Vincula as cores ao valor de cada váriavel associada
+# Vincula as cores ao valor de cada vÃ¡riavel associada
 cores_VolumePorDia <-
   as.character(
     x = cut(
@@ -28,11 +28,11 @@ cores_VolumePorDia <-
   )
 
 
-# Gráfico de barras para apresentar o n° de acidentes por dia da semana
+# GrÃ¡fico de barras para apresentar o nÂ° de acidentes por dia da semana
 volumePorDiaX <- barplot(volumePorDia, main="Acidentes Por Dia da Semana", 
                          xlab="Dias da Semana",
-                         names.arg=c("Domingo","Segunda","Terça","Quarta",
-                                     "Quinta", "Sexta", "Sábado"),
+                         names.arg=c("Domingo","Segunda","TerÃ§a","Quarta",
+                                     "Quinta", "Sexta", "SÃ¡bado"),
                          ylab="Volume",
                          ylim=c(0,7500),
                          col=cores_VolumePorDia)
@@ -48,8 +48,9 @@ text(volumePorDiaX,volumePorDiaY,labels=as.character(volumePorDiaY),
 sexoEnvolvidos <- table(dados_acidentes_rs$sexo)
 sexoEnvolvidos
 perSexoEnvolvidos<- round(100*sexoEnvolvidos/sum(sexoEnvolvidos), 1)
+perSexoEnvolvidos=paste(perSexoEnvolvidos, "%")
 
-#Gera gráfico de pizza
+#Gera grÃ¡fico de pizza
 pie(sexoEnvolvidos, labels = perSexoEnvolvidos, , main = "Volume de Acidentes Por Sexo",
     col=c("Gray","Blue"))
 legend("topright", c("Feminino", "Masculino"), 
@@ -58,12 +59,12 @@ legend("topright", c("Feminino", "Masculino"),
 
 #####################################################################################
 
-# Gráfico por Faixa Etária - Geral
+# GrÃ¡fico por Faixa EtÃ¡ria - Geral
 gruposDeIdade <- cut(dados_acidentes_rs$idade, breaks=c(0,20,30,40,50,60,Inf))
 #Agrupando os dados
 table(gruposDeIdade)
 
-# Cria lista de cores do cinza até o azul
+# Cria lista de cores do cinza atÃ© o azul
 listaDeCoresGrupoIdade <- colorRampPalette(c("#CCCCCC", "#104E8B"))
 
 # Identifica quantas cores iremos precisar 
@@ -72,7 +73,7 @@ listaDeCoresGrupoIdade <- listaDeCoresGrupoIdade(n = nrow(x = table(gruposDeIdad
 # Apresenta as cores
 listaDeCoresGrupoIdade
 
-# Vincula as cores ao valor de cada váriavel associada
+# Vincula as cores ao valor de cada vÃ¡riavel associada
 cores_GrupoIdade <-
   as.character(
     x = cut(
@@ -82,7 +83,7 @@ cores_GrupoIdade <-
     )
   )
 
-#Gerando gráfico do n° de acidentes por faixa etária
+#Gerando grÃ¡fico do nÂ° de acidentes por faixa etÃ¡ria
 #barplot(table(gruposDeIdade),
 #        main = "Acidentes Por Grupo de Idade",
 #        names.arg=c("0-20","20-30","30-40", 
@@ -107,7 +108,7 @@ text(volumeFaixaEtariaX,volumeFaixaEtariaY,labels=as.character(volumeFaixaEtaria
 
 #####################################################################################
 
-# Gráfico por Faixa Etária - Só Condutores
+# GrÃ¡fico por Faixa EtÃ¡ria - SÃ³ Condutores
 
 # Filtra apenas os condutores  
 dfCondutores <- dados_acidentes_rs %>% filter(dados_acidentes_rs$tipo_envolvido == "Condutor" )
@@ -116,7 +117,7 @@ gruposDeIdadeCondutores <- cut(dfCondutores$idade, breaks=c(0,20,30,40,50,60,Inf
 #Agrupando os dados
 table(gruposDeIdadeCondutores)
 
-# Cria lista de cores do cinza até o azul
+# Cria lista de cores do cinza atÃ© o azul
 listaDeCoresGrupoIdadeCondutores <- colorRampPalette(c("#CCCCCC", "#104E8B"))
 
 # Identifica quantas cores iremos precisar 
@@ -125,7 +126,7 @@ listaDeCoresGrupoIdadeCondutores <- listaDeCoresGrupoIdadeCondutores(n = nrow(x 
 # Apresenta as cores
 listaDeCoresGrupoIdadeCondutores
 
-# Vincula as cores ao valor de cada váriavel associada
+# Vincula as cores ao valor de cada vÃ¡riavel associada
 cores_GrupoIdadeCondutores <-
   as.character(
     x = cut(
@@ -148,12 +149,12 @@ text(volumeFaixaEtariaCondutorX,volumeFaixaEtariaCondutorY,labels=as.character(v
 
 #####################################################################################
 
-# Gráfico Cirular com informações meterológicas dos acidentes com óbitos
+# GrÃ¡fico Cirular com informaÃ§Ãµes meterolÃ³gicas dos acidentes com Ã³bitos
 
-# Filtra apenas os casos de óbito 
+# Filtra apenas os casos de Ã³bito 
 df1 <- dados_acidentes_rs %>% filter(dados_acidentes_rs$estado_fisico_seq == 4 )
 
-# Transforma em tabela para que tenhamos a frequência
+# Transforma em tabela para que tenhamos a frequÃªncia
 df1 <-table(dados_acidentes_rs$condicao_metereologica)
 
 # Transforma em data frame novamente
@@ -173,55 +174,58 @@ ggplot(df1, aes(ymax=ymax, ymin=ymin, xmax=4, xmin=3,
   geom_rect() +
   coord_polar(theta="y") +
   xlim(c(2, 4)) +
-  ggtitle("Volume de Acidentes Fatais Por Condição Meteorológica")
+  ggtitle("Volume de Acidentes Fatais Por CondiÃ§Ã£o MeteorolÃ³gica")
 
-#Gera gráfico de pizza
+#Gera grÃ¡fico de pizza
 coresGraficoCondMetereologica <- brewer.pal(8, "Set2") 
 
-# Filtra apenas os casos de óbito 
+# Filtra apenas os casos de Ã³bito 
 df1 <- dados_acidentes_rs %>% filter(dados_acidentes_rs$estado_fisico_seq == 4 )
 
-# Transforma em tabela para que tenhamos a frequência
+# Transforma em tabela para que tenhamos a frequÃªncia
 df1 <- table(df1$condicao_metereologica)
 df1
 perdf1<- round(100*df1/sum(df1), 1)
 
 perdf1
 
-#Gera gráfico de pizza
-pie(df1, labels = perdf1, , main = "Volume de Acidentes Fatais Por Condição Meteorológica")
+#Gera grÃ¡fico de pizza
+pie(df1, labels = perdf1, , main = "Volume de Acidentes Fatais Por CondiÃ§Ã£o MeteorolÃ³gica")
 
 pie(df1 , labels = perdf1, border="white", 
     col=coresGraficoCondMetereologica,
-    main = "Volume de Acidentes Fatais Por Condição Meteorológica")
+    main = "Volume de Acidentes Fatais Por CondiÃ§Ã£o MeteorolÃ³gica")
 
 #####################################################################################
 
-# Gráfico de Pontos que Retorna o Volume de Acidentes Fatais por Causa do Acidente
+# GrÃ¡fico de Pontos que Retorna o Volume de Acidentes Fatais por Causa do Acidente
 
-# Filtra apenas os casos de óbito 
+# Filtra apenas os casos de Ã³bito 
 df2 <- dados_acidentes_rs %>% filter(dados_acidentes_rs$estado_fisico_seq == 4 )
 
-# Transforma em tabela para que tenhamos a frequência
+# Transforma em tabela para que tenhamos a frequÃªncia
 df2 <-table(dados_acidentes_rs$causa_acidente)
 
 # Transforma em data frame novamente
 df2 <- as.data.frame(df2)
 
+# Ordena o data frame
+df2 <- df2[order(df2$Freq),]
+
 dotchart(df2$Freq,labels=df2$Var1,cex=.6,
          main="Acidentes Fatais por Causa da Origem do Acidente",
-         xlab="N° de Óbitos",
+         xlab="NÂ° de Ã“bitos",
          pch = 19,
          col = c("darkblue","dodgerblue"),
          cex.main = 1.0, cex.lab = 1.5, xlim = c(0,13500))
 
 #####################################################################################
 
-# Gráfico de Barras Horizontais - Acidentes Fatais por Tipo de Acidente
+# GrÃ¡fico de Barras Horizontais - Acidentes Fatais por Tipo de Acidente
 
 df3 <- dados_acidentes_rs %>% filter(dados_acidentes_rs$estado_fisico_seq == 4 )
 
-# Transforma em tabela para que tenhamos a frequência
+# Transforma em tabela para que tenhamos a frequÃªncia
 df3 <-table(dados_acidentes_rs$tipo_acidente)
 
 # Transforma em data frame novamente
@@ -243,12 +247,12 @@ df3 %>%
 
 #####################################################################################
 
-# Gráfico por Grupo de Veículo
+# GrÃ¡fico por Grupo de VeÃ­culo
 volumeGrupoVeiculo <- table(dados_acidentes_rs$grupo_veiculo)
 volumeGrupoVeiculo
 
 volumeGrupoVeiculoX <- barplot(volumeGrupoVeiculo,
-        main="Acidentes Por Grupo de Veículo", 
+        main="Acidentes Por Grupo de VeÃ­culo", 
         xlab="Grupos",
         ylab="Volume",
         ylim=c(0,35000),
@@ -261,11 +265,11 @@ text(volumeGrupoVeiculoX,volumeGrupoVeiculoY,labels=as.character(volumeGrupoVeic
 
 #####################################################################################
 
-#Avaliando acidentes por estação
+#Avaliando acidentes por estaÃ§Ã£o
 #Verao
 
 fatalidadePorEstacao <- dados_acidentes_rs %>% filter(dados_acidentes_rs$estado_fisico_seq == 4 )
-fatalidadePorEstacaoVerao <- fatalidadePorEstacao %>% filter(fatalidadePorEstacao$estacao == "Verão" )
+fatalidadePorEstacaoVerao <- fatalidadePorEstacao %>% filter(fatalidadePorEstacao$estacao == "VerÃ£o" )
 
 volGrupoVeiculoFatalPorEstacaoVerao <- table(fatalidadePorEstacaoVerao$grupo_veiculo)
 volGrupoVeiculoFatalPorEstacaoVerao
