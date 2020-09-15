@@ -277,6 +277,9 @@ volGrupoVeiculoFatalPorEstacaoVerao
 volBRFatalPorEstacaoVerao <- table(fatalidadePorEstacaoVerao$br)
 volBRFatalPorEstacaoVerao <- as.data.frame(volBRFatalPorEstacaoVerao)
 
+#Cria variavel percentual
+volBRFatalPorEstacaoVerao$Percentual <- round(volBRFatalPorEstacaoVerao$Freq/sum(volBRFatalPorEstacaoVerao$Freq)*100,2)
+
 #Outono
 
 fatalidadePorEstacao <- dados_acidentes_rs %>% filter(dados_acidentes_rs$estado_fisico_seq == 4 )
@@ -287,6 +290,10 @@ volGrupoVeiculoFatalPorEstacaoOutono
 
 volBRFatalPorEstacaoOutono <- table(fatalidadePorEstacaoOutono$br)
 volBRFatalPorEstacaoOutono <- as.data.frame(volBRFatalPorEstacaoOutono)
+
+#Cria variavel percentual
+volBRFatalPorEstacaoOutono$Percentual <- round(volBRFatalPorEstacaoOutono$Freq/sum(volBRFatalPorEstacaoOutono$Freq)*100,2)
+
 
 #Inverno
 
@@ -299,6 +306,9 @@ volGrupoVeiculoFatalPorEstacaoInverno
 volBRFatalPorEstacaoInverno <- table(fatalidadePorEstacaoInverno$br)
 volBRFatalPorEstacaoInverno <- as.data.frame(volBRFatalPorEstacaoInverno)
 
+#Cria variavel percentual
+volBRFatalPorEstacaoInverno$Percentual <- round(volBRFatalPorEstacaoInverno$Freq/sum(volBRFatalPorEstacaoInverno$Freq)*100,2)
+
 #Primavera
 
 fatalidadePorEstacao <- dados_acidentes_rs %>% filter(dados_acidentes_rs$estado_fisico_seq == 4 )
@@ -309,3 +319,6 @@ volGrupoVeiculoFatalPorEstacaoPrimavera
 
 volBRFatalPorEstacaoPrimavera <- table(fatalidadePorEstacaoPrimavera$br)
 volBRFatalPorEstacaoPrimavera <- as.data.frame(volBRFatalPorEstacaoPrimavera)
+
+#Cria variavel percentual
+volBRFatalPorEstacaoPrimavera$Percentual <- round(volBRFatalPorEstacaoPrimavera$Freq/sum(volBRFatalPorEstacaoPrimavera$Freq)*100,2)
