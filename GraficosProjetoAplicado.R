@@ -204,7 +204,7 @@ pie(df1 , labels = perdf1, border="white",
 df2 <- dados_acidentes_rs %>% filter(dados_acidentes_rs$estado_fisico_seq == 4 )
 
 # Transforma em tabela para que tenhamos a frequência
-df2 <-table(dados_acidentes_rs$causa_acidente)
+df2 <-table(df2$causa_acidente)
 
 # Transforma em data frame novamente
 df2 <- as.data.frame(df2)
@@ -217,7 +217,7 @@ dotchart(df2$Freq,labels=df2$Var1,cex=.6,
          xlab="N° de Óbitos",
          pch = 19,
          col = c("darkblue","dodgerblue"),
-         cex.main = 1.0, cex.lab = 1.5, xlim = c(0,13500))
+         cex.main = 1.0, cex.lab = 1.5, xlim = c(0,350))
 
 #####################################################################################
 
@@ -226,12 +226,14 @@ dotchart(df2$Freq,labels=df2$Var1,cex=.6,
 df3 <- dados_acidentes_rs %>% filter(dados_acidentes_rs$estado_fisico_seq == 4 )
 
 # Transforma em tabela para que tenhamos a frequência
-df3 <-table(dados_acidentes_rs$tipo_acidente)
+df3 <-table(df3$tipo_acidente)
 
 # Transforma em data frame novamente
 df3 <- as.data.frame(df3)
 
 df3 <- subset.data.frame(df3, Freq != 0)
+
+df3 <- df3[order(df3$Freq),]
 
 
 df3 %>%
@@ -243,7 +245,7 @@ df3 %>%
   theme_bw() +
   xlab("") +
   ylab("Acidentes Fatais por Tipo de Acidente") +
-  ylim(0,8000)
+  ylim(0,500)
 
 #####################################################################################
 
@@ -322,3 +324,4 @@ volBRFatalPorEstacaoPrimavera <- as.data.frame(volBRFatalPorEstacaoPrimavera)
 
 #Cria variavel percentual
 volBRFatalPorEstacaoPrimavera$Percentual <- round(volBRFatalPorEstacaoPrimavera$Freq/sum(volBRFatalPorEstacaoPrimavera$Freq)*100,2)
+
