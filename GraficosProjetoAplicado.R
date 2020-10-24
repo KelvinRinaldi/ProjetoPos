@@ -155,7 +155,7 @@ text(volumeFaixaEtariaCondutorX,volumeFaixaEtariaCondutorY,labels=as.character(v
 df1 <- dados_acidentes_rs %>% filter(dados_acidentes_rs$estado_fisico_seq == 4 )
 
 # Transforma em tabela para que tenhamos a frequência
-df1 <-table(dados_acidentes_rs$condicao_metereologica)
+df1 <-table(df1$condicao_metereologica)
 
 # Transforma em data frame novamente
 df1 <- as.data.frame(df1)
@@ -324,4 +324,3 @@ volBRFatalPorEstacaoPrimavera <- as.data.frame(volBRFatalPorEstacaoPrimavera)
 
 #Cria variavel percentual
 volBRFatalPorEstacaoPrimavera$Percentual <- round(volBRFatalPorEstacaoPrimavera$Freq/sum(volBRFatalPorEstacaoPrimavera$Freq)*100,2)
-
